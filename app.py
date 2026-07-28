@@ -1,17 +1,3 @@
-"""
-app.py
-Flask application for the portfolio site.
-
-Routes:
-    GET  /              -> renders the portfolio, data pulled live from SQLite
-    GET  /api/projects  -> JSON list of projects (same data, as a REST endpoint)
-    POST /api/contact   -> validates + stores a contact message in SQLite
-
-Run:
-    pip install -r requirements.txt
-    python database.py      # creates + seeds portfolio.db
-    python app.py            # starts the dev server on http://127.0.0.1:5000
-"""
 
 from flask import Flask, render_template, request, jsonify
 from database import get_connection, init_db, seed_db
@@ -33,7 +19,7 @@ def index():
     certifications = fetch_all("SELECT * FROM certifications ORDER BY sort_order")
     education = fetch_all("SELECT * FROM education ORDER BY sort_order")
 
-    # tech is stored comma-separated in SQLite; split it for the template
+    
     for project in projects:
         project["tech"] = [t.strip() for t in project["tech"].split(",")]
 
@@ -72,7 +58,7 @@ def api_contact():
     conn.commit()
     conn.close()
 
-    return jsonify({"status": "Created", "detail": " Thanks for reaching out."}), 201
+    return jsonify({"status": " ", "detail": " Thanks for reaching out."}), 201
 
 
 if __name__ == "__main__":

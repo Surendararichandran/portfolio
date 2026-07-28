@@ -1,6 +1,4 @@
-// script.js
-// Submits the contact form to the Flask backend (POST /api/contact)
-// and shows the response inline, styled like the rest of the page.
+
 
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("contact-form");
@@ -33,15 +31,15 @@ document.addEventListener("DOMContentLoaded", () => {
       const data = await response.json();
 
       if (response.ok) {
-        statusEl.textContent = `// ${data.status} — ${data.detail}`;
+        statusEl.textContent = ` ${data.status} ${data.detail}`;
         statusEl.className = "ok";
         form.reset();
       } else {
-        statusEl.textContent = `// 400 Bad Request — ${data.detail}`;
+        statusEl.textContent = ` 400 Bad Request   ${data.detail}`;
         statusEl.className = "err";
       }
     } catch (err) {
-      statusEl.textContent = "// network error — could not reach the server";
+      statusEl.textContent = " network error  could not reach the server";
       statusEl.className = "err";
     } finally {
       submitBtn.disabled = false;
